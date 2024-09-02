@@ -17,6 +17,7 @@ test('status code should be 200', async () => {
 
     actualStatus = response.status;
     console.log('Received status:', actualStatus); 
+    console.log('Response headers:', response.headers); // Example usage
   } catch (error) {
     console.error('Fetch error:', error); 
   }
