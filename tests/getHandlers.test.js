@@ -44,11 +44,10 @@ test('working hours in Big World should be correct', async () => {
       start: 5,
       end: 20,
     };
-
-    expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
-    expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
-
+ 
   } catch (error) {
     console.error(error);
   }
+  expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
+  expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
 });
