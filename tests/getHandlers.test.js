@@ -27,6 +27,10 @@ test('status code should be 200', async () => {
 test('working hours in Big World should be correct', async () => {
   let responseData;
   let bigWorldStore;
+  const expectedWorkingHours = {
+    start: 5,
+    end: 20,
+  };
 
   try {
     const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
@@ -40,14 +44,10 @@ test('working hours in Big World should be correct', async () => {
 
     bigWorldStore = responseData.find(store => store.name === "Big World");
 
-    const expectedWorkingHours = {
-      start: 5,
-      end: 20,
-    };
- 
   } catch (error) {
     console.error(error);
   }
+
   expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
   expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
 });
