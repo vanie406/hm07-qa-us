@@ -4,11 +4,10 @@
 const config = require('../config');
 
 test('status code should be 200', async () => {
-  let response;
   let actualStatus;
 
   try {
-    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+    const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -17,10 +16,6 @@ test('status code should be 200', async () => {
 
     actualStatus = response.status;
     console.log('Received status:', actualStatus); 
-
-    const contentType = response.headers.get('Content-Type'); // Using a property of response
-    console.log('Content-Type:', contentType); // Example usage
-
   } catch (error) {
     console.error('Fetch error:', error); 
   }
@@ -29,12 +24,11 @@ test('status code should be 200', async () => {
 });
 
 test('working hours in Big World should be correct', async () => {
-  let response;
   let responseData;
   let bigWorldStore;
 
   try {
-    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+    const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -52,9 +46,6 @@ test('working hours in Big World should be correct', async () => {
 
     expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
     expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
-
-    const contentType = response.headers.get('Content-Type'); // Using a property of response
-    console.log('Content-Type:', contentType); // Example usage
 
   } catch (error) {
     console.error(error);
