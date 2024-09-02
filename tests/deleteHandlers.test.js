@@ -5,7 +5,7 @@ test('status should be 200', async () => {
 	let response;
     try {
        
-        const response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
+         response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
             method: 'DELETE',
         });
 
@@ -21,11 +21,11 @@ test('should response expected data, ok: true', async () => {
 	let responseBody;
     try {
      
-        const response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
+         response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
             method: 'DELETE',
         });
 
-        const responseBody = await response.json();
+         responseBody = await response.json();
         
     } catch (error) {
         console.error(error);

@@ -6,7 +6,7 @@ test('status code should be 200', async () => {
   let actualStatus;
 
   try {
-    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+      response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -30,16 +30,16 @@ test('working hours in Big World should be correct', async () => {
   let bigWorldStore;
 
   try {
-    const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
-      method: 'GET',
-      headers: {
+      response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+        method: 'GET',
+        headers: {
         'Content-Type': 'application/json'
       }
     });
 
-    const responseData = await response.json();
+     responseData = await response.json();
 
-    const bigWorldStore = responseData.find(store => store.name === "Big World");
+     bigWorldStore = responseData.find(store => store.name === "Big World");
 
     const expectedWorkingHours = {
       start: 5,

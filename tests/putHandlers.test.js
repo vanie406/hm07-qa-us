@@ -28,7 +28,7 @@ test('status should respond with 200', async () => {
 	let actualStatus;
 
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
+		response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ test('status should respond with 200', async () => {
 });
 
 
-const updatedRequestBody= {
+let updatedRequestBody= {
 	"name": "Shopping Cart",
     "productsList": [
         {
@@ -81,14 +81,14 @@ test('shoud update the kit name', async () => {
 		body: JSON.stringify(updatedRequestBody)
 	  });
 	  
-	  getResponse = await fetch(`${config.API_URL}/api/v1/kits/2`, {
+	    getResponse = await fetch(`${config.API_URL}/api/v1/kits/2`, {
 		method: 'GET',
 		headers: {
 		  'Content-Type': 'application/json'
 		}
 	  });
 	
-	  kitData = await getResponse.json();
+	    kitData = await getResponse.json();
 
 	} catch (error) {
 	  console.error('Fetch error:', error);

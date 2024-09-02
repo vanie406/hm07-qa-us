@@ -14,6 +14,7 @@ const requestBody = {
         }
     ]
 }
+
 test('status should response 200', async () => {
 	let response;
 	let actualStatus;
@@ -43,7 +44,7 @@ test('kits should contain productList', async () => {
 	let kitData;
   
 	try {
-	  response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
+	    response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
 		method: 'POST',
 		headers: {
 		  'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ test('kits should contain productList', async () => {
 	} catch (error) {
 	  console.error('Fetch error:', error);
 	}
-  
+
 	expect(kitData).toHaveProperty('productsList');
 	expect(Array.isArray(kitData.productsList)).toBe(true);
   });
