@@ -86,6 +86,6 @@ test('shoud update the kit name', async () => {
 		
 
     } catch (error) {
-        console.error(error);
+        console.error(error);gitcd
     }
 });
