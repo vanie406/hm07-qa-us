@@ -66,7 +66,7 @@ const updatedRequestBody= {
 }
 test('shoud update the kit name', async () => {
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
+		await fetch(`${config.API_URL}/api/v1/kits/2`, {
 			method: 'PUT',
 			headers: {
 			'Content-Type': 'application/json'
