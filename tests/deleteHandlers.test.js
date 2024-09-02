@@ -2,19 +2,23 @@
 const config = require('../config');
 
 test('status should be 200', async () => {
+	let response;
     try {
        
         const response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
             method: 'DELETE',
         });
 
-        expect(response.status).toBe(200);
     } catch (error) {
         console.error(error);
     }
+
+	expect(response.status).toBe(200);
 });
 
-test('response body should contain expected data', async () => {
+test('should response expected data, ok: true', async () => {
+	let response;
+	let responseBody;
     try {
      
         const response = await fetch(`${config.API_URL}/api/v1/kits/3`, {
@@ -23,8 +27,9 @@ test('response body should contain expected data', async () => {
 
         const responseBody = await response.json();
         
-        expect(responseBody).toEqual({ ok: true });
     } catch (error) {
         console.error(error);
     }
+
+	expect(responseBody).toEqual({ ok: true });
 });

@@ -2,7 +2,7 @@
 const config = require('../config');
 
 const requestBody = {
-    // put your body here
+
 		"productsList": [
         {
             "id": 1,
@@ -15,6 +15,9 @@ const requestBody = {
     ]
 }
 test('status should response 200', async () => {
+	let response;
+	let actualStatus;
+
     try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
 			method: 'POST',
@@ -24,34 +27,39 @@ test('status should response 200', async () => {
 			body: JSON.stringify(requestBody)
 		});
 
-		const actualStatus = response.status;
-		expect(actualStatus).toBe(200);
+		actualStatus = response.status;
+		console.log('Received status:', actualStatus); 
 
 	} catch (error) {
 		console.error(error);
 	}
+
+	expect(actualStatus).toBe(200);
 });
 
-//test 2
 
 test('kits should contain productList', async () => {
+	let response;
+	let kitData;
+  
 	try {
-		const response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
-			method: 'POST',
-			headers: {
-			'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestBody)
-		});
-
-		const kitData = await response.json();
-		expect(kitData).toHaveProperty('productsList');
-		expect(Array.isArray(kitData.productsList)).toBe(true);
-
-
+	  response = await fetch(`${config.API_URL}/api/v1/kits/6/products`, {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(requestBody)
+	  });
+  
+	  if (response.ok) {
+		kitData = await response.json();
+	  } else {
+		console.error('Response error:', response.status);
+	  }
 	} catch (error) {
-		console.error(error);
+	  console.error('Fetch error:', error);
 	}
-});
-
-
+  
+	expect(kitData).toHaveProperty('productsList');
+	expect(Array.isArray(kitData.productsList)).toBe(true);
+  });

@@ -2,24 +2,33 @@
 const config = require('../config');
 
 test('status code should be 200', async () => {
+  let response;
+  let actualStatus;
+
   try {
-    const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
-    const actualStatus = response.status;
-    expect(actualStatus).toBe(200);
-
+    actualStatus = response.status;
+    console.log('Received status:', actualStatus); 
   } catch (error) {
-    console.error(error);
+    console.error('Fetch error:', error); 
   }
+
+  expect(actualStatus).toBe(200);
 });
 
-//Test 2
+
+
 test('working hours in Big World should be correct', async () => {
+  let response;
+  let responseData;
+  let bigWorldStore;
+
   try {
     const response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
@@ -37,16 +46,10 @@ test('working hours in Big World should be correct', async () => {
       end: 20
     };
 
-    expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
-    expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
-
   } catch (error) {
     console.error(error);
+
+    expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
+    expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
   }
 });
-
-
-
-
-
-

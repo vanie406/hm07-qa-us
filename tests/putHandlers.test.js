@@ -24,6 +24,9 @@ const requestBody= {
 }
 
 test('status should respond with 200', async () => {
+	let response;
+	let actualStatus;
+
 	try {
 		const response = await fetch(`${config.API_URL}/api/v1/kits/2`, {
 			method: 'PUT',
@@ -33,15 +36,16 @@ test('status should respond with 200', async () => {
 			body: JSON.stringify(requestBody)
 		});
 
-		const actualStatus = response.status;
-		expect(actualStatus).toBe(200); 
+		actualStatus = response.status;
+		console.log('Received status:', actualStatus); 
 
     } catch (error) {
         console.error(error);
     }
+
+	expect(actualStatus).toBe(200); 
 });
 
-//Test 2
 
 const updatedRequestBody= {
 	"name": "Shopping Cart",
@@ -65,27 +69,31 @@ const updatedRequestBody= {
     ]
 }
 test('shoud update the kit name', async () => {
+	let getResponse;
+	let kitData;
+	
 	try {
-		await fetch(`${config.API_URL}/api/v1/kits/2`, {
-			method: 'PUT',
-			headers: {
-			'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(updatedRequestBody)
-		});
-		
-		const getResponse = await fetch(`${config.API_URL}/api/v1/kits/2`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+	  await fetch(`${config.API_URL}/api/v1/kits/2`, {
+		method: 'PUT',
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(updatedRequestBody)
+	  });
+	  
+	  getResponse = await fetch(`${config.API_URL}/api/v1/kits/2`, {
+		method: 'GET',
+		headers: {
+		  'Content-Type': 'application/json'
+		}
+	  });
+	
+	  kitData = await getResponse.json();
 
-		const kitData = await getResponse.json();
-		expect(kitData.name).toBe("Shopping Cart");
-		
-
-    } catch (error) {
-        console.error(error);
-    }
+	} catch (error) {
+	  console.error('Fetch error:', error);
+	}
+	
+	expect(kitData).toBeDefined(); 
+	expect(kitData.name).toBe("Shopping Cart");
 });
