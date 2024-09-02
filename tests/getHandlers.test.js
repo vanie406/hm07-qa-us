@@ -8,7 +8,7 @@ test('status code should be 200', async () => {
   let actualStatus;
 
   try {
-    await fetch(`${config.API_URL}/api/v1/warehouses`, {
+    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
