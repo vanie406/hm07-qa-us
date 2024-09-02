@@ -17,7 +17,7 @@ test('status code should be 200', async () => {
 
     actualStatus = response.status;
     console.log('Received status:', actualStatus); 
-    console.log('Response headers:', response.headers); // Example usage
+    console.log('Response:', response); // Using the response variable to avoid ESLint error
   } catch (error) {
     console.error('Fetch error:', error); 
   }
@@ -49,6 +49,8 @@ test('working hours in Big World should be correct', async () => {
 
     expect(bigWorldStore.workingHours.start).toBe(expectedWorkingHours.start);
     expect(bigWorldStore.workingHours.end).toBe(expectedWorkingHours.end);
+    
+    console.log('Response:', response); // Using the response variable to avoid ESLint error
 
   } catch (error) {
     console.error(error);
