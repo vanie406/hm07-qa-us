@@ -1,3 +1,6 @@
+/* eslint-env node */
+
+// eslint-disable-next-line no-undef
 const config = require('../config');
 
 test('status code should be 200', async () => {
@@ -5,7 +8,7 @@ test('status code should be 200', async () => {
   let actualStatus;
 
   try {
-    response = await fetch(`${config.API_URL}/api/v1/warehouses`, {
+    await fetch(`${config.API_URL}/api/v1/warehouses`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
